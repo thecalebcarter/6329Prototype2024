@@ -70,6 +70,8 @@ public class UpperShooter extends SubsystemBase implements IVelocityControlledSu
 		//TODO: I could not identify the right thing to replace these
 		//this.UpperShooterFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
 		//this.UpperShooterFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
+		this.UpperShooterFalcon.getMotionMagicIsRunning().setUpdateFrequency(100);
+		this.UpperShooterFalcon.optimizeBusUtilization();
 		
 		this.UpperShooterFalcon.setNeutralMode(NeutralModeValue.Coast);
 		uShooterConfigurator.apply(new ClosedLoopRampsConfigs()

@@ -72,6 +72,8 @@ public class Shooter extends SubsystemBase implements IVelocityControlledSubsyst
 		//TODO: I could not identify the right thing to replace these.
 		//this.ShooterFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
 		//this.ShooterFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
+		this.ShooterFalcon.getMotionMagicIsRunning().setUpdateFrequency(100);
+		this.ShooterFalcon.optimizeBusUtilization();
 		
 		this.ShooterFalcon.setNeutralMode(NeutralModeValue.Coast);
 		shooterConfigurator.apply(new ClosedLoopRampsConfigs()
