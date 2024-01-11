@@ -5,6 +5,7 @@ import frc.robot.Models.*;
 
 import com.ctre.phoenix6.configs.ClosedLoopRampsConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.SoftwareLimitSwitchConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
@@ -72,7 +73,7 @@ public class UpperShooter extends SubsystemBase implements IVelocityControlledSu
 		//this.UpperShooterFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
 		this.UpperShooterFalcon.getMotionMagicIsRunning().setUpdateFrequency(100);
 		this.UpperShooterFalcon.optimizeBusUtilization();
-		
+
 		this.UpperShooterFalcon.setNeutralMode(NeutralModeValue.Coast);
 		uShooterConfigurator.apply(new ClosedLoopRampsConfigs()
 			.withDutyCycleClosedLoopRampPeriod(1)
@@ -87,6 +88,10 @@ public class UpperShooter extends SubsystemBase implements IVelocityControlledSu
 
 		this.UpperShooterFalcon.configPeakOutputReverse(peakOutputReverse, 30);
 		this.UpperShooterFalcon.configPeakOutputForward(peakOutputForward, 30);*/
+
+		this.UpperShooterFalcon.getConfigurator().apply(new MotorOutputConfigs()
+			.withPeakForwardDutyCycle(peakOutputForward)
+			.withPeakReverseDutyCycle(peakOutputReverse),30);
 
 		this.UpperShooterFalcon.configMotionParameters(shooterMotionParameters);
 

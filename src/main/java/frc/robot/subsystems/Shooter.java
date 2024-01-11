@@ -5,6 +5,7 @@ import frc.robot.Models.*;
 
 import com.ctre.phoenix6.configs.ClosedLoopRampsConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.SoftwareLimitSwitchConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
@@ -88,6 +89,10 @@ public class Shooter extends SubsystemBase implements IVelocityControlledSubsyst
 
 		this.ShooterFalcon.configPeakOutputReverse(peakOutputReverse, 30);
 		this.ShooterFalcon.configPeakOutputForward(peakOutputForward, 30);*/
+
+		this.ShooterFalcon.getConfigurator().apply(new MotorOutputConfigs()
+			.withPeakForwardDutyCycle(peakOutputForward)
+			.withPeakReverseDutyCycle(peakOutputReverse),30);
 
 		this.ShooterFalcon.configMotionParameters(shooterMotionParameters);
 
